@@ -1,4 +1,3 @@
--- Combined Query to Align User Queries with Responses
 SELECT
     f.id AS feedback_id,
     f.forId AS feedback_forId,
@@ -20,11 +19,7 @@ JOIN
 ON
     f.forId = s.parentId
 WHERE
-    s.parentId IN (
-        '7d9ae58d-7f99-4c16-bba2-ccc6601eacce',
-        'ac4bd22c-252b-444a-831d-be7a48b45228',
-        'acdbb3c0-8279-4f1f-94d5-c9245760dba8'
-    )
+    s.parentId IN (SELECT forId from feedbacks)
 
 UNION ALL
 
@@ -49,12 +44,7 @@ JOIN
 ON
     f.forId = s.id
 WHERE
-    s.id IN (
-        '7d9ae58d-7f99-4c16-bba2-ccc6601eacce',
-        'ac4bd22c-252b-444a-831d-be7a48b45228',
-        'acdbb3c0-8279-4f1f-94d5-c9245760dba8'
-    )
+    s.id IN (SELECT forId from feedbacks)
 
 ORDER BY
     feedback_id, query_or_response;
-
