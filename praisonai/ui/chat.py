@@ -263,7 +263,7 @@ def auth_callback(username: str, password: str):
 
 async def send_count():
     await cl.Message(
-        f"Create step counter: {create_step_counter}", disable_feedback=True
+        f"Create step counter: {create_step_counter}", disable_feedback=False
     ).send()
 
 @cl.on_chat_resume
